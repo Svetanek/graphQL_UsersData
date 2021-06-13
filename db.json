@@ -1,8 +1,49 @@
 {
   "users": [
-    {"id": "25", "firstName": "Mark", "age": 25, "companyId": "1"}, {"id": "1", "firstName": "Yesenia", "age": 21, "companyId": "2"},  {"id": "2", "firstName": "Swetha", "age": 27, "companyId": "2"}
+    {
+      "id": "25",
+      "firstName": "Mark",
+      "age": 25,
+      "companyId": "1"
+    },
+    {
+      "id": "1",
+      "firstName": "Yesenia",
+      "age": 21,
+      "companyId": "2"
+    },
+    {
+      "id": "2",
+      "firstName": "Swetha",
+      "age": 27,
+      "companyId": "2"
+    },
+    {
+      "firstName": "Elliot",
+      "age": 33,
+      "id": "ljauPHq"
+    },
+    {
+      "firstName": "Gene",
+      "age": 44,
+      "id": "Xz0hou8"
+    },
+    {
+      "firstName": "Sveta",
+      "age": 20,
+      "id": "GIceDPy"
+    }
   ],
   "companies": [
-    {"id": "1", "name": "FB", "description": "iphone"}, {"id": "2", "name": "Twitter", "description": "search"}
+    {
+      "id": "1",
+      "name": "FB",
+      "description": "iphone"
+    },
+    {
+      "id": "2",
+      "name": "Twitter",
+      "description": "search"
+    }
   ]
 }

@@ -6,7 +6,8 @@ const {
   GraphQLString,
   GraphQLInt,
   GraphQLList,
-  GraphQLSchema
+  GraphQLSchema,
+  GraphQLNonNull
 } = graphql
 
 // const users = [{id: '25', firstName: 'Mark', age: 20}, {id: '2', firstName: 'Yesenia', age: 21}]
@@ -65,7 +66,56 @@ const RootQuery = new GraphQLObjectType({
    }
   }
 })
+//GraphQLNonNull - validation
+const mutation = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+    addUser: {
+      type: UserType ,
+      args:  {
+        firstName: {type: new GraphQLNonNull(GraphQLString)},
+        age: {type: new GraphQLNonNull(GraphQLInt)},
+        companyId: {type: GraphQLString}
+      },
+      async resolve(parentValue, {firstName, age}) {
+        const {data} = await axios.post('http://localhost:3000/users', {firstName, age})
+        return data
 
+      }
+    },
+    deleteUser: {
+      type: UserType,
+      args:  {
+        id: {type: new GraphQLNonNull(GraphQLString)}
+        // firstName: {type: new GraphQLNonNull(GraphQLString)},
+        // age: {type: new GraphQLNonNull(GraphQLInt)},
+        // companyId: {type: GraphQLString}
+      },
+      async resolve(parentValue, args) {
+        const {data} = await axios.delete(`http://localhost:3000/users/${args.id}`)
+        return data
+
+      }
+    },
+    editUser: {
+      type: UserType ,
+      args:  {
+        id: {type: new GraphQLNonNull(GraphQLString)},
+        firstName: {type: GraphQLString},
+        age: {type: GraphQLInt},
+        companyId: {type: GraphQLString}
+      },
+      async resolve(parentValue, args) {
+        const {data} = await axios.patch(`http://localhost:3000/users/${args.id}`, args)
+        return data
+
+      }
+
+    }
+
+  }
+})
 module.exports = new GraphQLSchema({
-  query: RootQuery
+  query: RootQuery,
+  mutation
 })
